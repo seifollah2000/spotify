@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-spotify-black: #121212;
+  --color-spotify-dark: #181818;
+  --color-spotify-darker: #0a0a0a;
+  --color-spotify-gray: #282828;
+  --color-spotify-lightgray: #535353;
+  --color-spotify-lightestgray: #b3b3b3;
+  --color-spotify-white: #ffffff;
+  --color-spotify-green: #1db954;
+  --color-spotify-greenhover: #1ed760;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #535353 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #535353;
+  border-radius: 4px;
+}
+
+body {
+  background: #121212;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: #535353;
+  border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  margin-top: -4px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #1db954 var(--progress, 0%), #535353 var(--progress, 0%));
+}
