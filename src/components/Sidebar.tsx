@@ -4,11 +4,13 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useSession } from "next-auth/react"
 import { useState } from "react"
-import { FiHome, FiSearch, FiBook, FiPlus, FiHeart } from "react-icons/fi"
+import { FiHome, FiSearch, FiBook, FiPlus, FiHeart, FiAward } from "react-icons/fi"
+import { useLang } from "@/lib/lang"
 
 export default function Sidebar() {
   const pathname = usePathname()
   const { data: session } = useSession()
+  const { t } = useLang()
   const [showNewPlaylist, setShowNewPlaylist] = useState(false)
   const [playlistTitle, setPlaylistTitle] = useState("")
   const [playlists, setPlaylists] = useState<any[]>([])
@@ -33,9 +35,9 @@ export default function Sidebar() {
   }
 
   const links = [
-    { href: "/", label: "Home", icon: FiHome },
-    { href: "/search", label: "Search", icon: FiSearch },
-    { href: "/library", label: "Your Library", icon: FiBook },
+    { href: "/", label: t("home"), icon: FiHome },
+    { href: "/search", label: t("search"), icon: FiSearch },
+    { href: "/library", label: t("library"), icon: FiBook },
   ]
 
   return (
@@ -45,7 +47,7 @@ export default function Sidebar() {
           <div className="w-8 h-8 bg-spotify-green rounded-full flex items-center justify-center">
             <FiHeart className="text-black" size={18} />
           </div>
-          <span className="text-white font-bold text-xl">Spotify</span>
+          <span className="text-white font-bold text-xl">{t("appName")}</span>
         </Link>
 
         <nav className="space-y-1">
@@ -79,11 +81,11 @@ export default function Sidebar() {
               <div className="w-8 h-8 bg-spotify-lightestgray bg-opacity-30 rounded flex items-center justify-center">
                 <FiPlus size={18} />
               </div>
-              Create Playlist
+              {t("createPlaylist")}
             </button>
           ) : (
             <div className="text-xs text-spotify-lightestgray px-3">
-              Log in to create playlists
+              {t("logInRequired")}
             </div>
           )}
 
@@ -95,7 +97,19 @@ export default function Sidebar() {
               <div className="w-8 h-8 bg-gradient-to-br from-purple-700 to-blue-400 rounded flex items-center justify-center">
                 <FiHeart size={18} />
               </div>
-              Liked Songs
+              {t("likedSongs")}
+            </Link>
+          )}
+
+          {session && (
+            <Link
+              href="/subscription"
+              className="flex items-center gap-4 px-3 py-2 text-spotify-lightestgray hover:text-white transition-colors text-sm font-semibold"
+            >
+              <div className="w-8 h-8 bg-gradient-to-br from-yellow-600 to-yellow-400 rounded flex items-center justify-center">
+                <FiAward size={18} />
+              </div>
+              {t("subscription")}
             </Link>
           )}
         </div>
@@ -118,10 +132,10 @@ export default function Sidebar() {
       {showNewPlaylist && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => setShowNewPlaylist(false)}>
           <div className="bg-spotify-dark p-6 rounded-lg w-96" onClick={(e) => e.stopPropagation()}>
-            <h2 className="text-2xl font-bold mb-4">Create Playlist</h2>
+            <h2 className="text-2xl font-bold mb-4">{t("createPlaylist")}</h2>
             <input
               type="text"
-              placeholder="My Playlist"
+              placeholder={t("title")}
               value={playlistTitle}
               onChange={(e) => setPlaylistTitle(e.target.value)}
               className="w-full px-4 py-2 bg-spotify-gray rounded-md text-white placeholder-spotify-lightestgray outline-none mb-4"
@@ -133,13 +147,13 @@ export default function Sidebar() {
                 onClick={() => setShowNewPlaylist(false)}
                 className="px-4 py-2 text-sm font-semibold text-spotify-lightestgray hover:text-white transition-colors"
               >
-                Cancel
+                {t("cancel")}
               </button>
               <button
                 onClick={createPlaylist}
                 className="px-6 py-2 bg-white text-black rounded-full text-sm font-semibold hover:scale-105 transition-transform"
               >
-                Create
+                {t("create")}
               </button>
             </div>
           </div>

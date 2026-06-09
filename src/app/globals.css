@@ -10,6 +10,8 @@
   --color-spotify-white: #ffffff;
   --color-spotify-green: #1db954;
   --color-spotify-greenhover: #1ed760;
+  --font-vazir: "Vazirmatn", sans-serif;
+  --font-inter: "Inter", sans-serif;
 }
 
 * {
@@ -34,6 +36,7 @@ body {
   background: #121212;
   color: #ffffff;
   overflow: hidden;
+  font-family: var(--font-vazir);
 }
 
 input[type="range"] {
@@ -67,4 +70,8 @@ input[type="range"]:hover::-webkit-slider-thumb {
 
 input[type="range"]::-webkit-slider-runnable-track {
   background: linear-gradient(to right, #1db954 var(--progress, 0%), #535353 var(--progress, 0%));
+}
+
+[dir="rtl"] input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(to left, #1db954 var(--progress, 0%), #535353 var(--progress, 0%));
 }

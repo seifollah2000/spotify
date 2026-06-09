@@ -5,11 +5,11 @@ import { useParams } from "next/navigation"
 import { FiPlay, FiClock, FiMoreHorizontal, FiTrash2 } from "react-icons/fi"
 import { usePlayerStore } from "@/lib/store"
 import SongList from "@/components/SongList"
-import { PlaylistType } from "@/lib/types"
+import { PlaylistType, SongType } from "@/lib/types"
 
 export default function PlaylistPage() {
   const params = useParams()
-  const [playlist, setPlaylist] = useState<PlaylistType | null>(null)
+  const [playlist, setPlaylist] = useState<any>(null)
   const { playSong } = usePlayerStore()
 
   const fetchPlaylist = () => {
@@ -17,10 +17,10 @@ export default function PlaylistPage() {
     fetch(`/api/playlists/${params.id}`)
       .then((r) => r.json())
       .then((data) => {
-        const formatted = {
-          ...data,
-          songs: data.songs?.map((ps: any) => ps.song) || [],
-        }
+    const formatted = {
+      ...data,
+      songs: data.songs?.map((ps: any) => ({ ...ps.song, playlistSongId: ps.id })) || [],
+    }
         setPlaylist(formatted)
       })
       .catch(console.error)
@@ -38,7 +38,7 @@ export default function PlaylistPage() {
     )
   }
 
-  const totalDuration = playlist.songs.reduce((acc, s) => acc + s.duration, 0)
+  const totalDuration = playlist.songs.reduce((acc: number, s: SongType) => acc + s.duration, 0)
   const minutes = Math.floor(totalDuration / 60)
 
   return (
