@@ -16,16 +16,16 @@ A full-stack Spotify clone built with Next.js, featuring a dark theme, music pla
 
 ## Tech Stack
 
-| Technology  | Purpose            |
-|------------|-------------------|
-| Next.js 14 | Framework          |
-| TypeScript | Language           |
-| Tailwind v4 | Styling           |
-| Prisma 7   | ORM                |
-| SQLite     | Database           |
-| NextAuth   | Authentication     |
-| Zustand    | State management   |
-| bcryptjs   | Password hashing   |
+| Technology  | Purpose          |
+| ----------- | ---------------- |
+| Next.js 16  | Framework        |
+| TypeScript  | Language         |
+| Tailwind v4 | Styling          |
+| Prisma 7    | ORM              |
+| SQLite      | Database         |
+| NextAuth    | Authentication   |
+| Zustand     | State management |
+| bcryptjs    | Password hashing |
 
 ## Getting Started
 
@@ -100,21 +100,21 @@ src/
 
 ## API Endpoints
 
-| Method | Endpoint                | Description            |
-|--------|------------------------|------------------------|
-| GET    | `/api/songs`           | List popular songs     |
-| GET    | `/api/albums`          | List all albums        |
-| GET    | `/api/albums/[id]`     | Album details          |
-| GET    | `/api/search?q=`       | Search songs/albums    |
-| GET    | `/api/playlists`       | List user playlists    |
-| POST   | `/api/playlists`       | Create playlist        |
-| GET    | `/api/playlists/[id]`  | Playlist details       |
-| POST   | `/api/playlists/[id]`  | Add song to playlist   |
-| GET    | `/api/liked`           | Liked songs            |
-| POST   | `/api/liked`           | Toggle like song       |
-| GET    | `/api/subscription`    | Get subscription       |
-| POST   | `/api/subscription`    | Purchase subscription  |
-| POST   | `/api/auth/register`   | Register user          |
+| Method | Endpoint              | Description           |
+| ------ | --------------------- | --------------------- |
+| GET    | `/api/songs`          | List popular songs    |
+| GET    | `/api/albums`         | List all albums       |
+| GET    | `/api/albums/[id]`    | Album details         |
+| GET    | `/api/search?q=`      | Search songs/albums   |
+| GET    | `/api/playlists`      | List user playlists   |
+| POST   | `/api/playlists`      | Create playlist       |
+| GET    | `/api/playlists/[id]` | Playlist details      |
+| POST   | `/api/playlists/[id]` | Add song to playlist  |
+| GET    | `/api/liked`          | Liked songs           |
+| POST   | `/api/liked`          | Toggle like song      |
+| GET    | `/api/subscription`   | Get subscription      |
+| POST   | `/api/subscription`   | Purchase subscription |
+| POST   | `/api/auth/register`  | Register user         |
 
 ## License
 

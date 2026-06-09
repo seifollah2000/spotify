@@ -1,10 +1,8 @@
 import prisma from "@/lib/prisma"
 import { NextResponse } from "next/server"
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const playlist = await prisma.playlist.findUnique({
       where: { id: params.id },
@@ -27,10 +25,8 @@ export async function GET(
   }
 }
 
-export async function POST(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function POST(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const { songId } = await req.json()
     if (!songId) {
@@ -68,10 +64,8 @@ export async function POST(
   }
 }
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const { searchParams } = new URL(req.url)
     const songId = searchParams.get("songId")
